@@ -1,0 +1,1 @@
+docker run -p 3000:3000 -d --network minha-rede -e NODE_ENV=production -e DB_NAME=person -e DB_USER=postgres -e DB_PASSWORD=postgres -e DB_HOST=postgres-container mtzimba/cadastro-pessoa-api

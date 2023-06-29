@@ -1,8 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const config = require('../config');
 
-const sequelize = new Sequelize('person', 'postgres', 'postgres', {
-  host: 'localhost',
-  dialect: 'postgres',
+const env = process.env.NODE_ENV || 'development';
+const sequelize = new Sequelize(config[env].database, config[env].username, config[env].password, {
+  host: config[env].host,
+  dialect: config[env].dialect,
 });
 
 const PersonModel = sequelize.define('person', {
