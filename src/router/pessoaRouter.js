@@ -8,4 +8,6 @@ router.get('/api/pessoas', pessoaController.listar);
 
 router.post('/api/pessoas', pessoaController.incluir);
 
+router.delete('/api/pessoas/{:id}', pessoaController.excluir);
+
 module.exports = router;

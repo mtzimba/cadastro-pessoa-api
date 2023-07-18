@@ -37,15 +37,18 @@ class PessoaRepository {
     }
   }
 
-  async listar() {
+  async excluirr(id) {
     try {
-      await sequelize.sync();
-      return await PessoaModel.findAll();
+      return await PessoaModel.destroy({
+        where: { id: id });
     } catch (error) {
-      console.error('Erro ao listar todas as pessoas:', error);
+      console.error('Erro ao excluir pessoas:', error);
       throw error;
     }
   }
 }
 
 module.exports = { PessoaRepository };
+
+
+
