@@ -28,28 +28,27 @@ class PessoaController {
       res.status(500).json({ error: 'Erro ao listar todas as pessoas' });
     }
   };
-}
 
-  excluir = async (req, res) => {
+   excluir = async (req, res) => {
+    const id = req.params.id;
     try {
-      const pessoaExiste = await this.pessoaService.buscarPorId(id);
-      res.status(204).json('Exclusão realizada com sucesso');
-      const { id } = req.params;
-  try {
-    const pessoaExiste = await this.pessoaService.buscarPorId(id);
-  }
-    if (!pessoaExiste) {
-      res.status(404).json({ error: 'Não existe o registro informado' });
-    }
-    
+      const pessoaExcluida = await pessoaService.excluir(id);
+      if (pessoaExcluida) {
+      
+        res.sendStatus(204).send('Exclusão realizada com sucesso');
+      } else {
+       
+        res.sendStatus(404).send('Não existe o registro informado');
+      }
     } catch (error) {
-      console.error('Erro na exclusão:', error);
-    res.status(500).json({ error: 'Erro na exclusão' });
+      console.error('Erro ao excluir a pessoa:', error);
+      res.status(500).send('Erro na exclusão');
+    }
+  };
   }
-},
-
-
-
 module.exports = { PessoaController };
-  
+
+
+
+
 

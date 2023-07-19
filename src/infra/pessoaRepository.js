@@ -36,19 +36,29 @@ class PessoaRepository {
       throw error;
     }
   }
-
-  async excluirr(id) {
-    try {
-      return await PessoaModel.destroy({
-        where: { id: id });
-    } catch (error) {
-      console.error('Erro ao excluir pessoas:', error);
-      throw error;
+    async excluir(idPessoa) {
+      try {
+        await sequelize.sync(); 
+        const pessoaExcluida = await PessoaModel.destroy({
+          where: {
+            id: idPessoa, 
+          },
+        });
+        return pessoaExcluida > 0; 
+      } catch (error) {
+        console.error('Erro ao excluir pessoa:', error);
+        throw error;
+      }
     }
   }
-}
+  
 
 module.exports = { PessoaRepository };
+
+
+
+
+
 
 
 
