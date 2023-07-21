@@ -16,6 +16,10 @@ class PessoaService {
   async excluir(id) {
     return await this.pessoaRepository.excluir(id);
   }
+
+  async editar(id) {
+    return await this.pessoaRepository.editar(id);
+  }
 }
 
 module.exports = { PessoaService };

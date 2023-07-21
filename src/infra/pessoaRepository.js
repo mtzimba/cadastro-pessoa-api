@@ -61,6 +61,36 @@ class PessoaRepository {
       throw error;
     }
   }
+
+  async editar(id, pessoaAtualizada) {
+    try {
+      await sequelize.sync();
+
+      const [numRowsUpdated, updatedRows] = await PessoaModel.update(
+        {
+          nome: pessoaAtualizada.nome,
+          dataNascimento: pessoaAtualizada.dataNascimento,
+        },
+        {
+          where: {
+            id: id,
+          },
+          returning: true,
+        }
+      );
+
+      if (numRowsUpdated === 0) {
+        // Nenhuma pessoa foi atualizada (ID não encontrado)
+        return null;
+      }
+
+      // Retorna a pessoa atualizada
+      return updatedRows[0];
+    } catch (error) {
+      console.error("Erro ao editar pessoa:", error);
+      throw error;
+    }
+  }
 }
 
 module.exports = { PessoaRepository };
