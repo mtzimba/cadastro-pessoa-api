@@ -32,13 +32,13 @@ class PessoaController {
    excluir = async (req, res) => {
     const id = req.params.id;
     try {
-      const pessoaExcluida = await pessoaService.excluir(id);
+      const pessoaExcluida = await this.pessoaService.excluir(id);
       if (pessoaExcluida) {
       
-        res.sendStatus(204).send('Exclusão realizada com sucesso');
+        res.sendStatus(204);
       } else {
        
-        res.sendStatus(404).send('Não existe o registro informado');
+        res.status(404).send('Não existe o registro informado');
       }
     } catch (error) {
       console.error('Erro ao excluir a pessoa:', error);

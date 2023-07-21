@@ -12,6 +12,10 @@ class PessoaService {
   async listar() {
     return await this.pessoaRepository.listar();
   }
+
+  async excluir(id) {
+    return await this.pessoaRepository.excluir(id);
+  }
 }
 
 module.exports = { PessoaService };

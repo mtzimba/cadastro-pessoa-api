@@ -47,12 +47,12 @@ class PessoaRepository {
     }
   }
 
-  async excluir(idPessoa) {
+  async excluir(id) {
     try {
       await sequelize.sync();
       const pessoaExcluida = await PessoaModel.destroy({
         where: {
-          id: idPessoa,
+          id: id,
         },
       });
       return pessoaExcluida > 0;
