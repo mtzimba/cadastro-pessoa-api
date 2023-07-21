@@ -1,4 +1,4 @@
-const { PessoaRepository } = require('../infra/pessoaRepository');
+const { PessoaRepository } = require("../infra/pessoaRepository");
 
 class PessoaService {
   constructor() {
@@ -11,6 +11,10 @@ class PessoaService {
 
   async listar() {
     return await this.pessoaRepository.listar();
+  }
+
+  async excluir(id) {
+    return await this.pessoaRepository.excluir(id);
   }
 }
 

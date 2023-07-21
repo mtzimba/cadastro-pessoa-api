@@ -1,6 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const config = require('../config');
-const env = process.env.NODE_ENV || 'development';
+const { Sequelize, DataTypes } = require("sequelize");
+const config = require("../config");
+const env = process.env.NODE_ENV || "development";
 const sequelize = new Sequelize(
   config[env].database,
   config[env].username,
@@ -8,9 +8,10 @@ const sequelize = new Sequelize(
   {
     host: config[env].host,
     dialect: config[env].dialect,
-  });
+  }
+);
 
-const PessoaModel = sequelize.define('pessoa', {
+const PessoaModel = sequelize.define("pessoa", {
   nome: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -18,11 +19,10 @@ const PessoaModel = sequelize.define('pessoa', {
   dataNascimento: {
     type: DataTypes.DATE,
     allowNull: false,
-  }
+  },
 });
 
 class PessoaRepository {
-
   async incluir(novaPessoa) {
     try {
       await sequelize.sync();
@@ -32,7 +32,7 @@ class PessoaRepository {
       });
       return pessoaSalva;
     } catch (error) {
-      console.error('Erro ao incluir uma nova pessoa:', error);
+      console.error("Erro ao incluir uma nova pessoa:", error);
       throw error;
     }
   }
@@ -42,7 +42,22 @@ class PessoaRepository {
       await sequelize.sync();
       return await PessoaModel.findAll();
     } catch (error) {
-      console.error('Erro ao listar todas as pessoas:', error);
+      console.error("Erro ao listar todas as pessoas:", error);
+      throw error;
+    }
+  }
+
+  async excluir(id) {
+    try {
+      await sequelize.sync();
+      const pessoaExcluida = await PessoaModel.destroy({
+        where: {
+          id: id,
+        },
+      });
+      return pessoaExcluida > 0;
+    } catch (error) {
+      console.error("Erro ao excluir pessoa:", error);
       throw error;
     }
   }
