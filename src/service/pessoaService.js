@@ -1,4 +1,4 @@
-const { PessoaRepository } = require('../infra/pessoaRepository');
+const { PessoaRepository } = require("../infra/pessoaRepository");
 
 class PessoaService {
   constructor() {
