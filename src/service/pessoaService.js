@@ -17,8 +17,8 @@ class PessoaService {
     return await this.pessoaRepository.excluir(id);
   }
 
-  async editar(id) {
-    return await this.pessoaRepository.editar(id);
+  async editar(id, pesssoaParaAtualizar) {
+    return await this.pessoaRepository.editar(id, pesssoaParaAtualizar);
   }
 }
 

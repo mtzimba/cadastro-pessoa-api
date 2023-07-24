@@ -48,7 +48,7 @@ class PessoaController {
     const { nome, dataNascimento } = req.body;
   
     try {
-      const pessoaEditada = await pessoaService.editar(id, { nome, dataNascimento });
+      const pessoaEditada = await  this.pessoaService.editar(id, { nome, dataNascimento });
   
       if (!pessoaEditada) {
         return res.status(404).send("Não existe o registro informado");

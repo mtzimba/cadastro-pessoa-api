@@ -62,14 +62,14 @@ class PessoaRepository {
     }
   }
 
-  async editar(id, pessoaAtualizada) {
+  async editar(id, pesssoaParaAtualizar) {
     try {
       await sequelize.sync();
 
       const [numRowsUpdated, updatedRows] = await PessoaModel.update(
         {
-          nome: pessoaAtualizada.nome,
-          dataNascimento: pessoaAtualizada.dataNascimento,
+          nome: pesssoaParaAtualizar.nome,
+          dataNascimento: pesssoaParaAtualizar.dataNascimento,
         },
         {
           where: {
