@@ -10,4 +10,6 @@ router.post("/api/pessoas", pessoaController.incluir);
 
 router.delete("/api/pessoas/:id", pessoaController.excluir);
 
+router.put("/api/pessoas/:id", pessoaController.editar);
+
 module.exports = router;

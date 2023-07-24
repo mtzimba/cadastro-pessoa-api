@@ -42,5 +42,23 @@ class PessoaController {
       res.status(500).send("Erro na exclusão");
     }
   };
+
+  editar =  async (req, res) => {
+    const id = req.params.id;
+    const { nome, dataNascimento } = req.body;
+  
+    try {
+      const pessoaEditada = await  this.pessoaService.editar(id, { nome, dataNascimento });
+  
+      if (!pessoaEditada) {
+        return res.status(404).send("Não existe o registro informado");
+      }
+  
+      return res.status(200).json(pessoaEditada);
+    } catch (error) {
+      console.error("Erro ao editar a pessoa:", error);
+      return res.status(500).send("Erro na edição");
+    }
+  }; 
 }
 module.exports = { PessoaController };
