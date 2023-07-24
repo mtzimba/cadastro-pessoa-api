@@ -43,32 +43,22 @@ class PessoaController {
     }
   };
 
-  editar = async (req, res) => {
+  editar =  async (req, res) => {
     const id = req.params.id;
     const { nome, dataNascimento } = req.body;
-
+  
     try {
-      const pessoaExistente = await this.pessoaService.obterPorId(id);
-
-      if (!pessoaExistente) {
-        res.status(404).send("Não existe o registro informado");
-        return;
+      const pessoaEditada = await pessoaService.editar(id, { nome, dataNascimento });
+  
+      if (!pessoaEditada) {
+        return res.status(404).send("Não existe o registro informado");
       }
-
-      const pessoaAtualizada = new Pessoa(
-        nome || pessoaExistente.nome,
-        dataNascimento || pessoaExistente.dataNascimento
-      );
-
-      const pessoaEditada = await this.pessoaService.editar(
-        id,
-        pessoaAtualizada
-      );
-      res.status(200).json(pessoaEditada);
+  
+      return res.status(200).json(pessoaEditada);
     } catch (error) {
       console.error("Erro ao editar a pessoa:", error);
-      res.status(500).send("Erro na edição");
+      return res.status(500).send("Erro na edição");
     }
-  };
+  }; 
 }
 module.exports = { PessoaController };
