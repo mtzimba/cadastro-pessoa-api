@@ -12,4 +12,6 @@ router.delete("/api/pessoas/:id", pessoaController.excluir);
 
 router.put("/api/pessoas/:id", pessoaController.editar);
 
+router.get("/api/pessoas/:id", pessoaController.buscarPorId);
+
 module.exports = router;

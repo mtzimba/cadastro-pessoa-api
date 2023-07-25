@@ -79,15 +79,24 @@ class PessoaRepository {
         }
       );
 
-      if (numRowsUpdated === 0) {
-        // Nenhuma pessoa foi atualizada (ID não encontrado)
+      if (numRowsUpdated === 0) { 
         return null;
       }
 
-      // Retorna a pessoa atualizada
       return updatedRows[0];
     } catch (error) {
       console.error("Erro ao editar pessoa:", error);
+      throw error;
+    }
+  }
+
+  async buscar(id) {
+    try {
+      await sequelize.sync();
+      const pessoaEncontrada = await PessoaModel.findByPk(id);
+      return pessoaEncontrada;
+    } catch (error) {
+      console.error("Erro ao buscar pessoa por ID:", error);
       throw error;
     }
   }

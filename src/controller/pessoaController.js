@@ -59,6 +59,22 @@ class PessoaController {
       console.error("Erro ao editar a pessoa:", error);
       return res.status(500).send("Erro na edição");
     }
-  }; 
+  };
+  
+  buscarPorId = async (req, res) => {
+    const id = req.params.id;
+    try {
+      const pessoaEncontrada = await this.pessoaService.buscar(id);
+
+      if (!pessoaEncontrada) {
+        return res.status(404).send("Não existe o registro informado");
+      }
+
+      return res.status(200).json(pessoaEncontrada);
+    } catch (error) {
+      console.error("Erro ao buscar a pessoa pelo ID:", error);
+      return res.status(500).send("Erro na busca");
+    }
+  };
 }
 module.exports = { PessoaController };

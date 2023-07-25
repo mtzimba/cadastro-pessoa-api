@@ -20,6 +20,10 @@ class PessoaService {
   async editar(id, pesssoaParaAtualizar) {
     return await this.pessoaRepository.editar(id, pesssoaParaAtualizar);
   }
+  
+  async buscar(id) {
+    return await this.pessoaRepository.buscar(id,);
+  }
 }
 
 module.exports = { PessoaService };
