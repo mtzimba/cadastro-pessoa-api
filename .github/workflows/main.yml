@@ -32,4 +32,4 @@ jobs:
           push: true
           tags: |
             mtzimba/cadastro-pessoa-api:latest
-            mtzimba/cadastro-pessoa-api:${{ github.run_id }}
+            mtzimba/cadastro-pessoa-api:${{ github.number }}
