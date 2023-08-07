@@ -24,6 +24,9 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          tags: user/app:latest
+          push: true
+          tags: |
+            mtzimba/cadastro-pessoa-api:latest
+            mtzimba/cadastro-pessoa-api:${{ github.run_id }}
           secrets: |
             "github_token=${{ secrets.TOKEN_DOCKER_HUB }}"
